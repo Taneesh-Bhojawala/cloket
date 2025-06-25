@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const cartSlice = createSlice({
   name: "cart",
   initialState: {
-    itemsByUser: {}, // 🧠 user-based carts
-    user: null,      // currently logged-in user
+    itemsByUser: {},
+    user: null,
   },
   reducers: {
     setCartUser: (state, action) => {

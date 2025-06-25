@@ -134,7 +134,7 @@ export default function Navbar({ searchTerm, setSearchTerm }) {
               Logged in as <strong style={{ marginLeft: 5 }}>{user.fullName}</strong>
             </MenuItem>,
             <MenuItem onClick={() => navigate("/orders")}>My Orders</MenuItem>,
-
+            <MenuItem onClick={() => navigate("/address")}>Addresses</MenuItem>,
             <MenuItem onClick={handleLogout}>Logout</MenuItem>
         
         ] : (

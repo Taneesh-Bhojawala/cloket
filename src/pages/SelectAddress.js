@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import {
-  Box, Typography, Paper, Button
+  Box, Typography, Button
 } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import AddressCard from "../components/AddressCard"; // 👈 Add this at the top
+
 
 export default function SelectAddress() {
   const currentUser = useSelector((state) => state.user);
@@ -41,21 +43,14 @@ export default function SelectAddress() {
 
       <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
         {addresses.map((addr) => (
-          <Paper
+          <AddressCard
             key={addr.id}
-            elevation={selectedId === addr.id ? 8 : 2}
-            sx={{
-              p: 2, width: 280,
-              border: selectedId === addr.id ? "2px solid #2196f3" : "1px solid #ccc",
-              cursor: "pointer", transition: "0.3s"
-            }}
-            onClick={() => handleSelect(addr.id)}
-          >
-            <Typography fontWeight="bold">{addr.tag}</Typography>
-            <Typography>{addr.line1}, {addr.line2}</Typography>
-            <Typography>{addr.city}, {addr.state} - {addr.pincode}</Typography>
-          </Paper>
+            address={addr}
+            isSelected={selectedId === addr.id}
+            onSelect={handleSelect}
+          />
         ))}
+
       </Box>
 
       <Button
@@ -65,7 +60,7 @@ export default function SelectAddress() {
       >
         Add / Delete Address
       </Button>
-
+      <br/>
       <Button
         variant="contained"
         color="primary"

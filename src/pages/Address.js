@@ -7,12 +7,11 @@ import {
   Box,
   MenuItem,
   Autocomplete,
-  IconButton,
 } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
 import { useNavigate } from "react-router-dom";
 import { State, City } from "country-state-city";
 import { useSelector } from "react-redux";
+import AddressCard from "../components/AddressCard";
 
 // Safe ID generator
 const generateId = () =>
@@ -35,7 +34,6 @@ export default function AddAddressPage() {
   const [cityOptions, setCityOptions] = useState([]);
   const [addresses, setAddresses] = useState([]);
 
-  // Load saved addresses
   useEffect(() => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
     const user = users.find((u) => u.email === currentUser?.email);
@@ -51,11 +49,14 @@ export default function AddAddressPage() {
   const validate = () => {
     if (!form.line1.trim()) return alert("Address Line 1 is required.");
     if (!form.pincode.trim()) return alert("Pincode is required.");
+    if (form.pincode.length !== 6)
+      return alert("Pincode must be exactly 6 digits.");
     if (!form.stateCode) return alert("Please select a state.");
     if (!form.city) return alert("Please select a city.");
     if (!form.tag) return alert("Please select an address type.");
     return true;
   };
+
 
   const saveAddressesToStorage = (updatedList) => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
@@ -91,6 +92,7 @@ export default function AddAddressPage() {
       tag: "",
     });
     setCityOptions([]);
+    navigate("/addrselect");
   };
 
   const handleDelete = (id) => {
@@ -198,26 +200,7 @@ export default function AddAddressPage() {
           <Typography>No saved addresses found.</Typography>
         )}
         {addresses.map((addr) => (
-          <Paper
-            key={addr.id}
-            sx={{ p: 2, mb: 2, position: "relative", pr: 6 }}
-          >
-            <Typography variant="subtitle1" fontWeight="bold">
-              {addr.tag}
-            </Typography>
-            <Typography>
-              {addr.line1}, {addr.line2}
-            </Typography>
-            <Typography>
-              {addr.city}, {addr.state} - {addr.pincode}
-            </Typography>
-            <IconButton
-              onClick={() => handleDelete(addr.id)}
-              sx={{ position: "absolute", top: 8, right: 8 }}
-            >
-              <DeleteIcon />
-            </IconButton>
-          </Paper>
+          <AddressCard key={addr.id} address={addr} onDelete={handleDelete} />
         ))}
 
         <Button

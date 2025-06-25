@@ -11,18 +11,18 @@ import FinalSummary from "./pages/OrderSummary";
 import PreviousOrders from "./pages/OrderHistory"
 import "./App.css";
 
-// ❌ Old context-based imports (replaced by Redux)
+// Old context-based imports (replaced by Redux)
 // import { useUser } from "./context/UserContext";
 // import { CartProvider } from "./context/CartContext";
 
 export default function App() {
   const [searchTerm, setSearchTerm] = useState("");
 
-  // ❌ Old context-based state access
+  // Old context-based state access
   // const { user } = useUser();
 
   return (
-    // ❌ Old CartContext wrapper (now handled by Redux)
+    // Old CartContext wrapper (now handled by Redux)
     // <CartProvider currentUser={user}>
     //   <Box sx={{ minHeight: "100vh" }}>
     //     <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
@@ -42,9 +42,9 @@ export default function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Auth />} />
         <Route path="/address" element={<AddAddressPage />} />
-        <Route path="/addrselect" element={<SelectAddress/>}/>
-        <Route path="/summary" element={<FinalSummary/>}/>
-        <Route path="/orders" element={<PreviousOrders/>}/>
+        <Route path="/addrselect" element={<SelectAddress />} />
+        <Route path="/summary" element={<FinalSummary />} />
+        <Route path="/orders" element={<PreviousOrders />} />
       </Routes>
     </Box>
   );
