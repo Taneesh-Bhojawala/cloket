@@ -47,6 +47,7 @@ export default function Navbar({ searchTerm, setSearchTerm }) {
 
 
   const handleLogout = () => {
+    handleClose();
     dispatch(setCartUser(null));
     localStorage.removeItem("selectedAddressId");
     dispatch(logout());
@@ -133,12 +134,12 @@ export default function Navbar({ searchTerm, setSearchTerm }) {
             <MenuItem disabled>
               Logged in as <strong style={{ marginLeft: 5 }}>{user.fullName}</strong>
             </MenuItem>,
-            <MenuItem onClick={() => navigate("/orders")}>My Orders</MenuItem>,
-            <MenuItem onClick={() => navigate("/address")}>Addresses</MenuItem>,
+            <MenuItem onClick={() => { handleClose(); navigate("/orders")}}>My Orders</MenuItem>,
+            <MenuItem onClick={() => { handleClose(); navigate("/address")}}>Addresses</MenuItem>,
             <MenuItem onClick={handleLogout}>Logout</MenuItem>
         
         ] : (
-          <MenuItem onClick={() => navigate("/login")}>Login / Sign Up</MenuItem>
+          <MenuItem onClick={() => { handleClose(); navigate("/login")}}>Login / Sign Up</MenuItem>
         )}
       </Menu>
     </AppBar>
