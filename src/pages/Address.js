@@ -204,12 +204,12 @@ export default function AddAddressPage() {
         ))}
 
         <Button
-          variant="outlined"
+          variant="contained"
           fullWidth
-          onClick={() => navigate("/addrselect")}
+          onClick={() => navigate(-1)}
           sx={{ mt: 2 }}
         >
-          Back to Checkout
+          Back
         </Button>
       </Box>
     </Box>

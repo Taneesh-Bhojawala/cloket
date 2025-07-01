@@ -95,8 +95,13 @@ export default function Home({ searchTerm }) {
   return (
     <Container sx={{ mt: 4, mb: 5 }}>
       {/* === SLIDESHOW === */}
-      <Box sx={{ mb: 5, display: "flex", justifyContent: "center",}}>
-        <Box sx={{ width: "100%", maxWidth: 1100 }}>
+      <Box sx={{ mb: 5, display: "flex", justifyContent: "center", }}>
+        <Box sx={{
+          width: "100%", maxWidth: 1100, ".slick-prev:before, .slick-next:before": {
+            color: "black",
+            fontSize: "25px",
+          },
+        }}>
           <Slider {...sliderSettings}>
             {getFirstProductPerCategory().map((product) => (
               <Box

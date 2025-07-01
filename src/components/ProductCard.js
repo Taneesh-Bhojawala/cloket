@@ -17,6 +17,7 @@ export default function ProductCard({
 }) {
   return (
     <Card
+      elevation={10}
       onClick={onClick}
       sx={{
         backgroundColor: "#FFF8",

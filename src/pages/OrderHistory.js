@@ -3,6 +3,7 @@ import { Box, Typography, Paper, Divider } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CartItem from "../components/CartItem";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 export default function PreviousOrders() {
   const currentUser = useSelector((state) => state.user);
@@ -14,7 +15,7 @@ export default function PreviousOrders() {
 
     const users = JSON.parse(localStorage.getItem("users")) || [];
     const user = users.find((u) => u.email === currentUser.email);
-    setOrders(user?.orders || []);
+    setOrders(user?.orders.reverse() || []);
   }, [currentUser, navigate]);
 
   return (
@@ -39,7 +40,14 @@ export default function PreviousOrders() {
       ) : (
         orders.map((order) => (
           <Paper key={order.id} sx={{ p: 2, mb: 3 }}>
-            <Typography fontWeight="bold">Order ID: {order.id}</Typography>
+            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <Typography fontWeight="bold">Order ID: {order.id}</Typography>
+              <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                <CheckCircleOutlineIcon sx={{ color: "green" }} />
+                <Typography color="green">Delivered</Typography>
+              </Box>
+            </Box>
+
             <Typography>Date: {new Date(order.date).toLocaleString()}</Typography>
             <Typography>Payment: {order.paymentMethod.toUpperCase()}</Typography>
             <Typography>Total: ${order.total.toFixed(2)}</Typography>
