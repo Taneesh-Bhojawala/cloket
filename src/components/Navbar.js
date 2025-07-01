@@ -60,6 +60,7 @@ export default function Navbar({ searchTerm, setSearchTerm }) {
       position="sticky"
       elevation={3}
       sx={{
+        width: "100vw",
         py: 1,
         background: "linear-gradient(90deg, #2196f3 0%, #21cbf3 100%)",
         color: "white",
@@ -141,7 +142,7 @@ export default function Navbar({ searchTerm, setSearchTerm }) {
         ] : (
           <MenuItem onClick={() => { handleClose(); navigate("/login")}}>Login / Sign Up</MenuItem>
         )}
-      </Menu>
+      </Menu> 
     </AppBar>
   );
 }

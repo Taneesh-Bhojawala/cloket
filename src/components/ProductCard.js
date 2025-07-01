@@ -19,6 +19,7 @@ export default function ProductCard({
     <Card
       onClick={onClick}
       sx={{
+        backgroundColor: "#FFF8",
         border: "2px solid black",
         minHeight: 270,
         height: "auto",

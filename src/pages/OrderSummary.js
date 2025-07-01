@@ -93,9 +93,12 @@ export default function SummaryPage() {
 
     return (
         <Box sx={{ p: 4 }}>
-            <Typography variant="h4" gutterBottom>
-                Final Summary 🧾
-            </Typography>
+            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 3 }}>
+                <Typography variant="h4">Final Summary 🧾</Typography>
+                <Button variant="contained" onClick={() => navigate("/cart")}>
+                    Back to Cart
+                </Button>
+            </Box>
 
             {/* Cart Items */}
             <Paper sx={{ p: 3, mb: 3 }}>

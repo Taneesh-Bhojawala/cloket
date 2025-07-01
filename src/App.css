@@ -10,3 +10,9 @@ html, body, #root {
   height: 100%;
   box-sizing: border-box;
 }
+
+.slick-prev:before,
+.slick-next:before {
+  color: black; /* MUI primary blue */
+  font-size: 25px;
+}

@@ -43,7 +43,7 @@ export default function ProductDialog({ open, product, onClose, fromCart = false
   if (!product) return null;
 
   return (
-    <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth>
+    <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth > 
       <DialogTitle sx={{ fontWeight: "bold" }}>{product.title}</DialogTitle>
       <Divider />
       <DialogContent sx={{ display: "flex", flexDirection: "row", gap: 4, mt: 2 }}>
