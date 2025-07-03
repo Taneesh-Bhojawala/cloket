@@ -17,14 +17,14 @@ export default function ProductCard({
 }) {
   return (
     <Card
-      elevation={10}
+      elevation={5}
       onClick={onClick}
       sx={{
-        backgroundColor: "#FFF8",
+        backgroundColor: "#dcd5c1",
         border: "2px solid black",
         minHeight: 270,
         height: "auto",
-        width: 250,
+        width: 260,
         cursor: onClick ? "pointer" : "default",
         transition: "transform 0.3s ease",
         "&:hover": {
@@ -41,15 +41,33 @@ export default function ProductCard({
           component="img"
           image={product.thumbnail}
           alt={product.title}
-          sx={{ height: 160, objectFit: "contain", p: 1 }}
+          sx={{
+            height: 160,
+            width: "100%",
+            objectFit: "cover",
+            borderBottom: "1px solid #ddd",
+          }}
         />
+
         <CardContent>
           <Typography variant="h6" noWrap>
             {product.title}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            ${product.price}
+          <Typography>
+            <strong>Price:</strong>{" "}
+            <span style={product.discountPercentage > 0 ? { textDecoration: "line-through" } : {}}>
+              ${product.price}
+            </span>
+            {product.discountPercentage > 0 && (
+              <>
+                {" "}
+                <span style={{ color: "green" }}>
+                  ${((100 - product.discountPercentage) / 100 * product.price).toFixed(2)}
+                </span>
+              </>
+            )}
           </Typography>
+
         </CardContent>
       </Box>
 

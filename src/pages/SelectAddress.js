@@ -4,7 +4,7 @@ import {
 } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import AddressCard from "../components/AddressCard"; // 👈 Add this at the top
+import AddressCard from "../components/AddressCard";
 
 
 export default function SelectAddress() {
@@ -55,7 +55,7 @@ export default function SelectAddress() {
 
       <Button
         variant="contained"
-        onClick={() => navigate("/address")}
+        onClick={() => navigate("/address", {state:{from:"/addrselect"}})}
         sx={{ mt: 2, mr: 2 }}
       >
         Add / Delete Address

@@ -8,7 +8,7 @@ import {
   MenuItem,
   Autocomplete,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { State, City } from "country-state-city";
 import { useSelector } from "react-redux";
 import AddressCard from "../components/AddressCard";
@@ -20,6 +20,9 @@ const generateId = () =>
 export default function AddAddressPage() {
   const navigate = useNavigate();
   const currentUser = useSelector((state) => state.user);
+  const location = useLocation();
+  const from = location.state?.from;
+  console.log(from);
 
   const [form, setForm] = useState({
     line1: "",
@@ -92,7 +95,12 @@ export default function AddAddressPage() {
       tag: "",
     });
     setCityOptions([]);
-    navigate("/addrselect");
+    if(from === "/cart")
+    {
+      navigate("/addrselect");
+    }
+    else{
+    navigate(from || "/");}
   };
 
   const handleDelete = (id) => {
@@ -104,6 +112,25 @@ export default function AddAddressPage() {
   return (
     <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
       <Box sx={{ width: 420 }}>
+        {/* Existing Addresses */}
+        <Typography variant="h6" gutterBottom>
+          Saved Addresses 🗂️
+        </Typography>
+        {addresses.length === 0 && (
+          <Typography>No saved addresses found.</Typography>
+        )}
+        {addresses.map((addr) => (
+          <AddressCard key={addr.id} address={addr} onDelete={handleDelete} sx={{my:1}}/>
+        ))}
+
+        <Button
+          variant="contained"
+          fullWidth
+          onClick={() => navigate(-1)}
+          sx={{ my: 2 }}
+        >
+          Back
+        </Button>
         <Paper sx={{ p: 3, mb: 4 }}>
           <Typography variant="h5" gutterBottom>
             Add New Address 📬
@@ -191,26 +218,6 @@ export default function AddAddressPage() {
             Save Address
           </Button>
         </Paper>
-
-        {/* Existing Addresses */}
-        <Typography variant="h6" gutterBottom>
-          Saved Addresses 🗂️
-        </Typography>
-        {addresses.length === 0 && (
-          <Typography>No saved addresses found.</Typography>
-        )}
-        {addresses.map((addr) => (
-          <AddressCard key={addr.id} address={addr} onDelete={handleDelete} />
-        ))}
-
-        <Button
-          variant="contained"
-          fullWidth
-          onClick={() => navigate(-1)}
-          sx={{ mt: 2 }}
-        >
-          Back
-        </Button>
       </Box>
     </Box>
   );

@@ -4,27 +4,14 @@ import { TextField } from "@mui/material";
 export default function SearchBar({ searchTerm, setSearchTerm }) {
   return (
     <TextField
-      label="Search Products"
+      placeholder="Search Watches..."
       variant="outlined"
       value={searchTerm}
       onChange={(e) => setSearchTerm(e.target.value)}
       fullWidth
       sx={{
-        backgroundColor: "#fff",
+        backgroundColor: "#dcd5c1",
         borderRadius: "30px",
-
-        "& .MuiInputBase-input": {
-          color: "#000",
-        },
-
-        "& .MuiInputLabel-root": {
-          color: "#666",
-        },
-
-        "& .MuiInputLabel-root.Mui-focused": {
-          color: "#000",
-        },
-
         '& .MuiOutlinedInput-root': {
           borderRadius: "30px",
           '& fieldset': {

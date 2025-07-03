@@ -28,14 +28,13 @@ export default function Cart() {
 
   const total = cartItems.reduce((sum, item) => sum + item.price, 0);
 
-  // 🧠 AddrSelect decision logic
   const handleAddrSelect = () => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
     const currentUser = users.find((u) => u.email === user.email);
     const addresses = currentUser?.addressBook || [];
 
     if (addresses.length === 0) {
-      navigate("/address");
+      navigate("/address",{state:{from: "/cart"}});
     } else {
       navigate("/addrselect");
     }
@@ -105,13 +104,13 @@ export default function Cart() {
             overflowY: "auto",
           }}
         >
-          <Typography variant="h6" gutterBottom>
+          <Typography variant="h6" gutterBottom color="text.primary">
             Cart Summary
           </Typography>
 
           {cartItems.map((item) => (
-            <Box key={item.id} sx={{ mb: 1 }}>
-              <Typography variant="body2" fontWeight="bold">
+            <Box key={item.id} sx={{ mb: 1 }} color="text.primary">
+              <Typography variant="body2" fontWeight="bold" >
                 {item.title}
               </Typography>
               <Typography variant="body2" color="text.secondary">
@@ -121,7 +120,7 @@ export default function Cart() {
             </Box>
           ))}
 
-          <Box sx={{ my: 2 }}>
+          <Box sx={{ my: 2 }} color="text.primary">
             <Typography variant="body1">
               Total Items: <strong>{cartItems.length}</strong>
             </Typography>
@@ -134,7 +133,7 @@ export default function Cart() {
             sx={{ mb: 1, backgroundColor: "yellow", color: "black" }}
             variant="contained"
             fullWidth
-            onClick={handleAddrSelect} // ✅ Uses new logic
+            onClick={handleAddrSelect}
           >
             Proceed To checkout
           </Button>
@@ -150,7 +149,7 @@ export default function Cart() {
         </Box>
       </Box>
 
-      {/* ✅ Product Dialog */}
+      {/* Product Dialog */}
       <ProductDialog
         open={open}
         product={selectedProduct}

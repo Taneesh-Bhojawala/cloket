@@ -9,10 +9,11 @@ import {
   CardMedia,
   CardContent,
 } from "@mui/material";
-import Slider from "react-slick";
-import CategoryFilter from "../components/CategoryFilter";
+import SSlider from "react-slick";
+import Filters from "../components/Filters";
 import ProductCard from "../components/ProductCard";
 import ProductDialog from "../components/ProductDialog";
+import Footer from "../components/Footer";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -22,23 +23,18 @@ export default function Home({ searchTerm }) {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [open, setOpen] = useState(false);
   const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [priceRange, setPriceRange] = useState([0, 50000]);
   const productGrid = useRef(null);
 
   useEffect(() => {
-    if (selectedCategory && productGrid.current) {
-      productGrid.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [selectedCategory]);
-
-  useEffect(() => {
-    fetch("https://dummyjson.com/products")
+    fetch("http://localhost:5000/api/watches")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data.products);
         setLoading(false);
-        const uniqueCategories = [...new Set(data.products.map((p) => p.category))];
-        setCategories(uniqueCategories);
+        const uniqueBrands = [...new Set(data.products.map((p) => p.brand))];
+        setCategories(uniqueBrands);
       })
       .catch((err) => {
         console.error("Error fetching products:", err);
@@ -47,9 +43,17 @@ export default function Home({ searchTerm }) {
   }, []);
 
   const filteredProducts = products.filter((product) => {
-    const matchCategory = selectedCategory ? product.category === selectedCategory : true;
-    const matchSearch = product.title.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchCategory && matchSearch;
+    const matchBrand =
+      selectedBrands.length === 0 || selectedBrands.includes(product.brand);
+    const matchSearch = searchTerm
+      ? product.title.toLowerCase().includes(searchTerm.toLowerCase())
+      : true;
+    const matchPrice =
+      typeof product.price === "number" &&
+      product.price >= priceRange[0] &&
+      product.price <= priceRange[1];
+
+    return matchBrand && matchSearch && matchPrice;
   });
 
   const handleCardClick = (product) => {
@@ -65,8 +69,8 @@ export default function Home({ searchTerm }) {
   const getFirstProductPerCategory = () => {
     const seen = new Set();
     return products.filter((p) => {
-      if (!seen.has(p.category)) {
-        seen.add(p.category);
+      if (!seen.has(p.brand)) {
+        seen.add(p.brand);
         return true;
       }
       return false;
@@ -94,15 +98,19 @@ export default function Home({ searchTerm }) {
 
   return (
     <Container sx={{ mt: 4, mb: 5 }}>
-      {/* === SLIDESHOW === */}
-      <Box sx={{ mb: 5, display: "flex", justifyContent: "center", }}>
-        <Box sx={{
-          width: "100%", maxWidth: 1100, ".slick-prev:before, .slick-next:before": {
-            color: "black",
-            fontSize: "25px",
-          },
-        }}>
-          <Slider {...sliderSettings}>
+      {/* SLIDESHOW */}
+      <Box sx={{ mb: 5, display: "flex", justifyContent: "center" }}>
+        <Box
+          sx={{
+            width: "100%",
+            maxWidth: 1100,
+            ".slick-prev:before, .slick-next:before": {
+              color: "#588157",
+              fontSize: "25px",
+            },
+          }}
+        >
+          <SSlider {...sliderSettings}>
             {getFirstProductPerCategory().map((product) => (
               <Box
                 key={product.id}
@@ -113,91 +121,106 @@ export default function Home({ searchTerm }) {
                   alignItems: "center",
                   px: 2,
                   outline: "none",
-                  "&:focus": {
-                    outline: "none",
-                  },
-                }
-                }
+                  "&:focus": { outline: "none" },
+                }}
               >
                 <Card
                   sx={{
-                    backgroundColor: "#FFF8",
+                    backgroundColor: "#dcd5c1",
                     width: "100%",
                     height: 400,
                     display: "flex",
                     flexDirection: { xs: "column", sm: "row" },
-                    alignItems: "center",
-                    justifyContent: "space-between",
+                    alignItems: "stretch",
                     overflow: "hidden",
-                    p: 2,
+                    p: 0,
                     boxShadow: 3,
                     cursor: "pointer",
+                    borderRadius: 2,
                   }}
                 >
-                  <CardMedia
-                    component="img"
-                    image={product.thumbnail}
-                    alt={product.title}
-                    sx={{
-                      width: { xs: "100%", sm: "50%" },
-                      height: "100%",
-                      objectFit: "contain",
-                      borderRadius: 2,
-                    }}
-                  />
+                  <Box sx={{ flex: 1, height: "100%" }}>
+                    <CardMedia
+                      component="img"
+                      image={product.thumbnail}
+                      alt={product.title}
+                      sx={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    />
+                  </Box>
                   <CardContent
                     sx={{
-                      width: { xs: "100%", sm: "50%" },
-                      p: 3,
+                      flex: 1,
+                      px: 4,
+                      py: 3,
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "center",
                       textAlign: { xs: "center", sm: "left" },
                     }}
                   >
                     <Typography variant="h5" fontWeight="bold" gutterBottom>
                       {product.title}
                     </Typography>
-                    <Typography variant="body1" color="text.secondary">
+                    <Typography variant="body1" color="text.secondary" sx={{ mb: 1 }}>
                       {product.description?.slice(0, 120)}...
                     </Typography>
-                    <Typography variant="subtitle2" mt={1}>
+                    <Typography variant="subtitle2">
                       Category: {product.category}
                     </Typography>
                   </CardContent>
                 </Card>
               </Box>
             ))}
-          </Slider>
+          </SSlider>
         </Box>
-      </Box >
+      </Box>
 
-      {/* === CATEGORY FILTER === */}
-      < Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 2, mb: 4 }
-      }>
-        <CategoryFilter
-          categories={categories}
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-        />
-      </Box >
+      {/* SIDEBAR + PRODUCT GRID */}
+      <Box sx={{ display: "flex", gap: 4.5 }}>
+        {/* Sidebar */}
+        <Box
+          sx={{
+            width: "250px",
+            backgroundColor: "#dcd5c1",
+            borderRadius: 2,
+            p: 2,
+            color: "black",
+            boxShadow: 1,
+            height: "1000px"
+          }}
+        >
+          <Filters
+            categories={categories}
+            selectedBrands={selectedBrands}
+            setSelectedBrands={setSelectedBrands}
+            priceRange={priceRange}
+            setPriceRange={setPriceRange}
+          />
+        </Box>
 
-      {/* === PRODUCT GRID === */}
-      {
-        filteredProducts.length === 0 ? (
-          <Typography variant="h6" align="center" color="text.secondary" sx={{ mt: 4 }}>
-            No matching products!
-          </Typography>
-        ) : (
-          <Grid container spacing={4} justifyContent="center" ref={productGrid}>
-            {filteredProducts.map((product) => (
-              <Grid item xs={12} sm={6} md={3} key={product.id}>
-                <ProductCard product={product} onClick={() => handleCardClick(product)} />
-              </Grid>
-            ))}
-          </Grid>
-        )
-      }
+        {/* Product Grid */}
+        <Box sx={{ flex: 1 }}>
+          {filteredProducts.length === 0 ? (
+            <Typography variant="h6" align="center" color="text.secondary" sx={{ mt: 4 }}>
+              No matching products!
+            </Typography>
+          ) : (
+            <Grid container spacing={3} ref={productGrid}>
+              {filteredProducts.map((product) => (
+                <Grid item xs={12} sm={6} md={4} key={product.id}>
+                  <Box sx={{ display: "flex", justifyContent: "center" }}>
+                    <ProductCard product={product} onClick={() => handleCardClick(product)} />
+                  </Box>
+                </Grid>
+              ))}
+            </Grid>
+          )}
+        </Box>
+      </Box>
 
-      {/* === PRODUCT DIALOG === */}
+      {/* Product Dialog */}
       <ProductDialog open={open} product={selectedProduct} onClose={handleClose} />
-    </Container >
+      <Footer />
+    </Container>
   );
 }

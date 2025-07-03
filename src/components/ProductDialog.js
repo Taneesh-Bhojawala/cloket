@@ -43,7 +43,7 @@ export default function ProductDialog({ open, product, onClose, fromCart = false
   if (!product) return null;
 
   return (
-    <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth > 
+    <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth >
       <DialogTitle sx={{ fontWeight: "bold" }}>{product.title}</DialogTitle>
       <Divider />
       <DialogContent sx={{ display: "flex", flexDirection: "row", gap: 4, mt: 2 }}>
@@ -72,8 +72,22 @@ export default function ProductDialog({ open, product, onClose, fromCart = false
           </Stack>
 
 
-          <Typography><strong>Price:</strong> ${product.price}</Typography>
-          <Typography><strong>Discount:</strong> {product.discountPercentage}%</Typography>
+          <Typography>
+            <strong>Price:</strong>{" "}
+            <span style={product.discountPercentage > 0 ? { textDecoration: "line-through" } : {}}>
+              ${product.price}
+            </span>
+            {product.discountPercentage > 0 && (
+              <>
+                {" "}
+                <span style={{ color: "green" }}>
+                  ${((100 - product.discountPercentage) / 100 * product.price).toFixed(2)}
+                </span>
+              </>
+            )}
+          </Typography>
+
+          <Typography sx={{ color: "red" }}><strong>Discount:</strong> {product.discountPercentage}%</Typography>
           <Typography><strong>Stock:</strong> {product.stock}</Typography>
           {product.brand && (
             <Typography><strong>Brand:</strong> {product.brand}</Typography>

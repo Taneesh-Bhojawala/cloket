@@ -15,7 +15,7 @@ export default function PreviousOrders() {
 
     const users = JSON.parse(localStorage.getItem("users")) || [];
     const user = users.find((u) => u.email === currentUser.email);
-    setOrders(user?.orders.reverse() || []);
+    setOrders((user?.orders || []).reverse());
   }, [currentUser, navigate]);
 
   return (
@@ -33,7 +33,7 @@ export default function PreviousOrders() {
             alignItems: "center",
           }}
         >
-          <Typography variant="h6" color="text.secondary">
+          <Typography variant="h6">
             You have no orders yet.
           </Typography>
         </Box>

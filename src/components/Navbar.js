@@ -62,7 +62,7 @@ export default function Navbar({ searchTerm, setSearchTerm }) {
       sx={{
         width: "100vw",
         py: 1,
-        background: "linear-gradient(90deg, #2196f3 0%, #21cbf3 100%)",
+        background: "linear-gradient(90deg, #1b4332 0%, #3a5a40 50%, #588157 100%)",
         color: "white",
       }}
     >
@@ -136,7 +136,7 @@ export default function Navbar({ searchTerm, setSearchTerm }) {
               Logged in as <strong style={{ marginLeft: 5 }}>{user.fullName}</strong>
             </MenuItem>,
             <MenuItem onClick={() => { handleClose(); navigate("/orders")}}>My Orders</MenuItem>,
-            <MenuItem onClick={() => { handleClose(); navigate("/address")}}>Addresses</MenuItem>,
+            <MenuItem onClick={() => { handleClose(); navigate("/address",{state: {from: "/"}})}}>Addresses</MenuItem>,
             <MenuItem onClick={handleLogout}>Logout</MenuItem>
         
         ] : (
