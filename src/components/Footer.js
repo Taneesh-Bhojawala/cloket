@@ -17,7 +17,7 @@ export default function Footer() {
           {/* Column 1: About */}
           <Grid item xs={12} sm={6} md={3}>
             <Typography variant="h6" gutterBottom>
-              MyShop
+              Cloket
             </Typography>
             <Typography variant="body2">
               Premium watches for every occasion. Quality and elegance, delivered to your doorstep.
@@ -40,7 +40,7 @@ export default function Footer() {
             <Typography variant="h6" gutterBottom>
               Contact Us
             </Typography>
-            <Typography variant="body2">Email: support@myshop.com</Typography>
+            <Typography variant="body2">Email: support@cloket.com</Typography>
             <Typography variant="body2">Phone: +91 98765 43210</Typography>
             <Typography variant="body2">Mon - Fri: 9 AM to 6 PM</Typography>
           </Grid>
@@ -51,7 +51,7 @@ export default function Footer() {
               Address
             </Typography>
             <Typography variant="body2">
-              MyShop Pvt. Ltd.<br />
+              Cloket Pvt. Ltd.<br />
               123, MG Road,<br />
               Bengaluru, India - 560001
             </Typography>
