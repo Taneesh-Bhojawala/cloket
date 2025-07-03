@@ -31,7 +31,7 @@ export default function Home({ searchTerm }) {
   const productGrid = useRef(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/watches")
+    fetch("https://watch-api-g7j5.onrender.com/api/watches")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data.products);
