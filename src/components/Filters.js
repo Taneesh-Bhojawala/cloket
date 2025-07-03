@@ -4,7 +4,8 @@ import {
   FormControlLabel,
   Checkbox,
   Box,
-  TextField
+  TextField,
+  Button,
 } from "@mui/material";
 
 export default function Filters({
@@ -13,12 +14,23 @@ export default function Filters({
   setSelectedBrands,
   priceRange,
   setPriceRange,
+  strapTypes,
+  selectedStraps,
+  setSelectedStraps,
 }) {
   const handleBrandChange = (brand) => {
     if (selectedBrands.includes(brand)) {
       setSelectedBrands(selectedBrands.filter((b) => b !== brand));
     } else {
       setSelectedBrands([...selectedBrands, brand]);
+    }
+  };
+
+  const handleStrapChange = (strap) => {
+    if (selectedStraps.includes(strap)) {
+      setSelectedStraps(selectedStraps.filter((s) => s !== strap));
+    } else {
+      setSelectedStraps([...selectedStraps, strap]);
     }
   };
 
@@ -35,8 +47,15 @@ export default function Filters({
     setPriceRange(newRange);
   };
 
+  const handleReset = () => {
+    setSelectedBrands([]);
+    setSelectedStraps([]);
+    setPriceRange([0, 50000]);
+  };
+
   return (
     <Box>
+      {/* Brand Filter */}
       <Typography variant="h6" gutterBottom>
         Brand
       </Typography>
@@ -54,6 +73,27 @@ export default function Filters({
         />
       ))}
 
+      {/* Strap Filter */}
+      <Box sx={{ mt: 4 }}>
+        <Typography variant="h6" gutterBottom>
+          Strap Type
+        </Typography>
+        {strapTypes.map((strap) => (
+          <FormControlLabel
+            key={strap}
+            control={
+              <Checkbox
+                checked={selectedStraps.includes(strap)}
+                onChange={() => handleStrapChange(strap)}
+                sx={{ color: "black" }}
+              />
+            }
+            label={strap}
+          />
+        ))}
+      </Box>
+
+      {/* Price Filter */}
       <Box sx={{ mt: 4 }}>
         <Typography variant="h6" gutterBottom>
           Price
@@ -77,6 +117,13 @@ export default function Filters({
             sx={{ width: "100%" }}
           />
         </Box>
+      </Box>
+
+      {/* Reset Button */}
+      <Box sx={{ mt: 4 }}>
+        <Button variant="outlined" color="error" fullWidth onClick={handleReset}>
+          Reset All Filters
+        </Button>
       </Box>
     </Box>
   );

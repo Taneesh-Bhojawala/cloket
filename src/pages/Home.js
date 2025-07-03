@@ -25,6 +25,9 @@ export default function Home({ searchTerm }) {
   const [categories, setCategories] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [priceRange, setPriceRange] = useState([0, 50000]);
+  const [strapTypes, setStrapTypes] = useState([]);
+  const [selectedStraps, setSelectedStraps] = useState([]);
+
   const productGrid = useRef(null);
 
   useEffect(() => {
@@ -35,6 +38,9 @@ export default function Home({ searchTerm }) {
         setLoading(false);
         const uniqueBrands = [...new Set(data.products.map((p) => p.brand))];
         setCategories(uniqueBrands);
+        const uniqueStraps = [...new Set(data.products.map((p) => p.strap))];
+        setStrapTypes(uniqueStraps);
+
       })
       .catch((err) => {
         console.error("Error fetching products:", err);
@@ -45,16 +51,14 @@ export default function Home({ searchTerm }) {
   const filteredProducts = products.filter((product) => {
     const matchBrand =
       selectedBrands.length === 0 || selectedBrands.includes(product.brand);
-    const matchSearch = searchTerm
-      ? product.title.toLowerCase().includes(searchTerm.toLowerCase())
-      : true;
-    const matchPrice =
-      typeof product.price === "number" &&
-      product.price >= priceRange[0] &&
-      product.price <= priceRange[1];
+    const matchStrap =
+      selectedStraps.length === 0 || selectedStraps.includes(product.strap);
+    const matchSearch = product.title.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchPrice = product.price >= priceRange[0] && product.price <= priceRange[1];
 
-    return matchBrand && matchSearch && matchPrice;
+    return matchBrand && matchStrap && matchSearch && matchPrice;
   });
+
 
   const handleCardClick = (product) => {
     setSelectedProduct(product);
@@ -186,7 +190,7 @@ export default function Home({ searchTerm }) {
             p: 2,
             color: "black",
             boxShadow: 1,
-            height: "1000px"
+            height: "570px"
           }}
         >
           <Filters
@@ -195,6 +199,9 @@ export default function Home({ searchTerm }) {
             setSelectedBrands={setSelectedBrands}
             priceRange={priceRange}
             setPriceRange={setPriceRange}
+            strapTypes={strapTypes}
+            selectedStraps={selectedStraps}
+            setSelectedStraps={setSelectedStraps}
           />
         </Box>
 

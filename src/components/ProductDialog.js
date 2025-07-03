@@ -89,6 +89,7 @@ export default function ProductDialog({ open, product, onClose, fromCart = false
 
           <Typography sx={{ color: "red" }}><strong>Discount:</strong> {product.discountPercentage}%</Typography>
           <Typography><strong>Stock:</strong> {product.stock}</Typography>
+          <Typography><strong>Strap Type:</strong> {product.strap}</Typography>
           {product.brand && (
             <Typography><strong>Brand:</strong> {product.brand}</Typography>
           )}

@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import WatchIcon from '@mui/icons-material/Watch';
 import SearchBar from "./SearchBar";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -92,7 +93,8 @@ export default function Navbar({ searchTerm, setSearchTerm }) {
             },
           }}
         >
-          🛍️ MyShop
+          Cloket
+          <WatchIcon />
         </Typography>
 
         <Box sx={{ flexGrow: 1, maxWidth: "500px", width: "100%" }}>
