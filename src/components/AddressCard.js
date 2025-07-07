@@ -12,6 +12,7 @@ export default function AddressCard({ address, isSelected, onSelect, onDelete })
                 cursor: onSelect ? "pointer" : "default",
                 transition: "0.3s",
                 position: "relative",
+                backgroundColor: "#dcd5c1"
             }}
             onClick={() => onSelect?.(address.id)}
         >

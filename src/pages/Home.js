@@ -208,7 +208,7 @@ export default function Home({ searchTerm }) {
         {/* Product Grid */}
         <Box sx={{ flex: 1 }}>
           {filteredProducts.length === 0 ? (
-            <Typography variant="h6" align="center" color="text.secondary" sx={{ mt: 4 }}>
+            <Typography variant="h6" align="center" sx={{ mt: 4 }}>
               No matching products!
             </Typography>
           ) : (

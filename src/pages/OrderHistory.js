@@ -39,7 +39,7 @@ export default function PreviousOrders() {
         </Box>
       ) : (
         orders.map((order) => (
-          <Paper key={order.id} sx={{ p: 2, mb: 3 }}>
+          <Paper key={order.id} sx={{ p: 2, mb: 3, backgroundColor: "#dcd5c1" }}>
             <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <Typography fontWeight="bold">Order ID: {order.id}</Typography>
               <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>

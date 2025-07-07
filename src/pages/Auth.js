@@ -68,106 +68,58 @@ export default function Auth() {
 
   return (
     <Box sx={{ display: "flex", justifyContent: "center", mt: 8 }}>
-  <Paper sx={{ p: 4, width: 320, textAlign: "center" }}>
-    <form
-      onSubmit={(e) => {
-        e.preventDefault(); // prevent page reload
-        handleSubmit();
-      }}
-    >
-      <Typography variant="h5" gutterBottom>
-        {isLogin ? "Login" : "Register"}
-      </Typography>
+      <Paper sx={{ p: 4, width: 320, textAlign: "center" }}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault(); // prevent page reload
+            handleSubmit();
+          }}
+        >
+          <Typography variant="h5" gutterBottom>
+            {isLogin ? "Login" : "Register"}
+          </Typography>
 
-      {!isLogin && (
-        <TextField
+          {!isLogin && (
+            <TextField
+              fullWidth
+              label="Full Name"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+              sx={{ mb: 2 }}
+            />
+          )}
+
+          <TextField
+            fullWidth
+            label="Email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            sx={{ mb: 2 }}
+          />
+
+          <TextField
+            fullWidth
+            label="Password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            sx={{ mb: 2 }}
+          />
+
+          <Button fullWidth variant="contained" type="submit">
+            {isLogin ? "Login" : "Register"}
+          </Button>
+        </form>
+
+        <Button
           fullWidth
-          label="Full Name"
-          value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
-          sx={{ mb: 2 }}
-        />
-      )}
-
-      <TextField
-        fullWidth
-        label="Email"
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        sx={{ mb: 2 }}
-      />
-
-      <TextField
-        fullWidth
-        label="Password"
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        sx={{ mb: 2 }}
-      />
-
-      <Button fullWidth variant="contained" type="submit">
-        {isLogin ? "Login" : "Register"}
-      </Button>
-    </form>
-
-    <Button
-      fullWidth
-      sx={{ mt: 1 }}
-      onClick={() => setIsLogin((prev) => !prev)}
-    >
-      {isLogin ? "Register?" : "Login?"}
-    </Button>
-  </Paper>
-</Box>
-
-    // <Box sx={{ display: "flex", justifyContent: "center", mt: 8 }}>
-    //   <Paper sx={{ p: 4, width: 320, textAlign: "center" }}>
-    //     <Typography variant="h5" gutterBottom>
-    //       {isLogin ? "Login" : "Register"}
-    //     </Typography>
-
-    //     {!isLogin && (
-    //       <TextField
-    //         fullWidth
-    //         label="Full Name"
-    //         value={fullName}
-    //         onChange={(e) => setFullName(e.target.value)}
-    //         sx={{ mb: 2 }}
-    //       />
-    //     )}
-
-    //     <TextField
-    //       fullWidth
-    //       label="Email"
-    //       type="email"
-    //       value={email}
-    //       onChange={(e) => setEmail(e.target.value)}
-    //       sx={{ mb: 2 }}
-    //     />
-
-    //     <TextField
-    //       fullWidth
-    //       label="Password"
-    //       type="password"
-    //       value={password}
-    //       onChange={(e) => setPassword(e.target.value)}
-    //       sx={{ mb: 2 }}
-    //     />
-
-    //     <Button fullWidth variant="contained" onClick={handleSubmit}>
-    //       {isLogin ? "Login" : "Register"}
-    //     </Button>
-
-    //     <Button
-    //       fullWidth
-    //       sx={{ mt: 1 }}
-    //       onClick={() => setIsLogin((prev) => !prev)}
-    //     >
-    //       {isLogin ? "Register?" : "Login?"}
-    //     </Button>
-    //   </Paper>
-    // </Box>
+          sx={{ mt: 1 }}
+          onClick={() => setIsLogin((prev) => !prev)}
+        >
+          {isLogin ? "Register?" : "Login?"}
+        </Button>
+      </Paper>
+    </Box>
   );
 }

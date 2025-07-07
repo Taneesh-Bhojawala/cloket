@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# ⌚️ Cloket – Watch Ecommerce Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Cloket is a modern, responsive **ecommerce website** for watches, built using **React.js**, **Material-UI**, and **Redux Toolkit**. It features product filtering, a persistent cart, address management, and a clean user interface — perfect for showcasing watch collections.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🔥 Features
 
-### `npm start`
+- 🖼️ Image slider with featured watches
+- 🧩 Filter by brand, strap type, and price range
+- 🛒 Add to cart
+- 📦 Address selection and management at checkout
+- 🔐 User login/logout with avatar-based profile menu
+- ♻️ Persistent user/cart state using Redux-Persist
+- 📱 Fully responsive for desktop
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Tech Stack
 
-### `npm test`
+| Technology        | Purpose                                 |
+|-------------------|------------------------------------------|
+| React.js          | Frontend framework                       |
+| Material-UI (MUI) | UI components & responsive layout        |
+| Redux Toolkit     | Global state management                  |
+| Redux Persist     | Persist Redux state in localStorage      |
+| React Router DOM  | Routing and navigation                   |
+| Fetch             | API integration                          |
+| Express.js        | Backend API (hosted on Render)           |
+| LocalStorage      | Address and cart persistence             |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🚀 Getting Started
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 1. Clone the repository
 
-### `npm run eject`
+```bash
+git clone https://github.com/Taneesh-Bhojawala/cloket.git
+cd cloket
+npm install
+npm start
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+API: https://watch-api-g7j5.onrender.com/api/watches
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Learning Resources
+This project was built during a 15-day training using the following resources:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+W3Schools
+GeeksforGeeks
+Material-UI Documentation
+MDN Web Docs
+ChatGPT (OpenAI)
+Stack Overflow
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project was developed as part of a web development internship/training at Hidden Brains.

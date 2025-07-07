@@ -13,7 +13,6 @@ import { useNavigate } from "react-router-dom";
 import { clearCart } from "../slices/cartSlice";
 import CartItem from "../components/CartItem";
 
-// ✅ Safe ID generator (works everywhere)
 function generateIdFromTimestamp() {
     return 'order-' + Date.now().toString(36) + '-' + Math.random().toString(36).substring(2, 10);
 }
@@ -63,7 +62,7 @@ export default function SummaryPage() {
         const updatedUsers = users.map((u) => {
             if (u.email === currentUser.email) {
                 const newOrder = {
-                    id: generateIdFromTimestamp(), // ✅ Safe and unique ID
+                    id: generateIdFromTimestamp(),
                     date: new Date().toISOString(),
                     items: cartItems,
                     address,

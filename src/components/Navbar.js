@@ -15,12 +15,6 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SearchBar from "./SearchBar";
 import { Link, useNavigate } from "react-router-dom";
-
-// For useContext
-// import { useUser } from "../context/UserContext";
-// import { useCart } from "../context/CartContext";
-
-// For Redux
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../slices/userSlice";
 import { setCartUser } from "../slices/cartSlice";
@@ -33,17 +27,12 @@ export default function Navbar({ searchTerm, setSearchTerm }) {
   const handleProfileMenuOpen = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
 
-  // For useContext
-  // const { user, logout } = useUser();
-  // const { getCartCount } = useCart();
-
-  // Redux
   const user = useSelector((state) => state.user);
   const cartItems = useSelector((state) => {
-  const user = state.cart?.user;
-  const itemsByUser = state.cart?.itemsByUser || {};
-  return user && itemsByUser[user] ? itemsByUser[user] : [];
-});
+    const user = state.cart?.user;
+    const itemsByUser = state.cart?.itemsByUser || {};
+    return user && itemsByUser[user] ? itemsByUser[user] : [];
+  });
 
 
   const handleLogout = () => {
@@ -101,7 +90,6 @@ export default function Navbar({ searchTerm, setSearchTerm }) {
 
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <IconButton component={Link} to="/cart" color="inherit">
-            {/* <Badge badgeContent={getCartCount()} color="error"> */}
             <Badge badgeContent={cartItems.length} color="error">
               <ShoppingCartIcon />
             </Badge>
@@ -130,19 +118,19 @@ export default function Navbar({ searchTerm, setSearchTerm }) {
         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
         transformOrigin={{ vertical: "top", horizontal: "right" }}
       >
-        {user ? 
-        [
+        {user ?
+          [
             <MenuItem disabled>
               Logged in as <strong style={{ marginLeft: 5 }}>{user.fullName}</strong>
             </MenuItem>,
-            <MenuItem onClick={() => { handleClose(); navigate("/orders")}}>My Orders</MenuItem>,
-            <MenuItem onClick={() => { handleClose(); navigate("/address",{state: {from: "/"}})}}>Addresses</MenuItem>,
+            <MenuItem onClick={() => { handleClose(); navigate("/orders") }}>My Orders</MenuItem>,
+            <MenuItem onClick={() => { handleClose(); navigate("/address", { state: { from: "/" } }) }}>Addresses</MenuItem>,
             <MenuItem onClick={handleLogout}>Logout</MenuItem>
-        
-        ] : (
-          <MenuItem onClick={() => { handleClose(); navigate("/login")}}>Login / Sign Up</MenuItem>
-        )}
-      </Menu> 
+
+          ] : (
+            <MenuItem onClick={() => { handleClose(); navigate("/login") }}>Login / Sign Up</MenuItem>
+          )}
+      </Menu>
     </AppBar>
   );
 }

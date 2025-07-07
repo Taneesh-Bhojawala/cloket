@@ -105,7 +105,6 @@ export default function Filters({
             size="small"
             value={priceRange[0]}
             onChange={(e) => handlePriceChange("min", e.target.value)}
-            inputProps={{ min: 0 }}
             sx={{ width: "100%" }}
           />
           <TextField

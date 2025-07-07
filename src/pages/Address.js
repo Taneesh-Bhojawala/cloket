@@ -95,12 +95,12 @@ export default function AddAddressPage() {
       tag: "",
     });
     setCityOptions([]);
-    if(from === "/cart")
-    {
+    if (from === "/cart") {
       navigate("/addrselect");
     }
-    else{
-    navigate(from || "/");}
+    else {
+      navigate(from || "/");
+    }
   };
 
   const handleDelete = (id) => {
@@ -120,7 +120,7 @@ export default function AddAddressPage() {
           <Typography>No saved addresses found.</Typography>
         )}
         {addresses.map((addr) => (
-          <AddressCard key={addr.id} address={addr} onDelete={handleDelete} sx={{my:1}}/>
+          <AddressCard key={addr.id} address={addr} onDelete={handleDelete} sx={{ my: 1 }} />
         ))}
 
         <Button
@@ -131,7 +131,7 @@ export default function AddAddressPage() {
         >
           Back
         </Button>
-        <Paper sx={{ p: 3, mb: 4 }}>
+        <Paper sx={{ p: 3, mb: 4, backgroundColor: "#dcd5c1" }}>
           <Typography variant="h5" gutterBottom>
             Add New Address 📬
           </Typography>
@@ -149,19 +149,6 @@ export default function AddAddressPage() {
             fullWidth
             value={form.line2}
             onChange={(e) => handleChange("line2", e.target.value)}
-            sx={{ mb: 2 }}
-          />
-
-          <TextField
-            label="Pincode"
-            fullWidth
-            value={form.pincode}
-            onChange={(e) => {
-              const val = e.target.value;
-              if (/^\d*$/.test(val) && val.length <= 6) {
-                handleChange("pincode", val);
-              }
-            }}
             sx={{ mb: 2 }}
           />
 
@@ -199,6 +186,19 @@ export default function AddAddressPage() {
             renderInput={(params) => (
               <TextField {...params} label="City" fullWidth sx={{ mb: 2 }} />
             )}
+          />
+
+          <TextField
+            label="Pincode"
+            fullWidth
+            value={form.pincode}
+            onChange={(e) => {
+              const val = e.target.value;
+              if (/^\d*$/.test(val) && val.length <= 6) {
+                handleChange("pincode", val);
+              }
+            }}
+            sx={{ mb: 2 }}
           />
 
           <TextField
