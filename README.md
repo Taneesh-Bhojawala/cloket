@@ -31,22 +31,6 @@ Cloket is a modern, responsive **ecommerce website** for watches, built using **
 
 ---
 
-
----
-
-## 🚀 Getting Started
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/Taneesh-Bhojawala/cloket.git
-cd cloket
-npm install
-npm start
-
-API: https://watch-api-g7j5.onrender.com/api/watches
-
-Learning Resources
 This project was built during a 15-day training using the following resources:
 
 W3Schools
@@ -57,3 +41,14 @@ ChatGPT (OpenAI)
 Stack Overflow
 
 This project was developed as part of a web development internship/training at Hidden Brains.
+API: https://watch-api-g7j5.onrender.com/api/watches
+
+---
+
+## 🚀 Getting Started
+
+```bash
+git clone https://github.com/Taneesh-Bhojawala/cloket.git
+cd cloket
+npm install
+npm start
