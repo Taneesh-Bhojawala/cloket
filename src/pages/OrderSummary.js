@@ -100,7 +100,7 @@ export default function SummaryPage() {
             </Box>
 
             {/* Cart Items */}
-            <Paper sx={{ p: 3, mb: 3 }}>
+            <Paper sx={{ p: 3, mb: 3, backgroundColor: "#dcd5c1", }}>
                 <Typography variant="h6" gutterBottom>
                     Items in Your Cart:
                 </Typography>
@@ -109,7 +109,7 @@ export default function SummaryPage() {
             </Paper>
 
             {/* Address */}
-            <Paper sx={{ p: 3, mb: 3 }}>
+            <Paper sx={{ p: 3, mb: 3, backgroundColor: "#dcd5c1" }}>
                 <Typography variant="h6" gutterBottom>
                     Deliver To:
                 </Typography>
@@ -125,7 +125,7 @@ export default function SummaryPage() {
             </Paper>
 
             {/* Payment */}
-            <Paper sx={{ p: 3, mb: 3 }}>
+            <Paper sx={{ p: 3, mb: 3, backgroundColor: "#dcd5c1" }}>
                 <Typography variant="h6" gutterBottom>
                     Choose Payment Method:
                 </Typography>

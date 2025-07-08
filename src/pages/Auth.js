@@ -68,7 +68,7 @@ export default function Auth() {
 
   return (
     <Box sx={{ display: "flex", justifyContent: "center", mt: 8 }}>
-      <Paper sx={{ p: 4, width: 320, textAlign: "center" }}>
+      <Paper sx={{ p: 4, width: 320, textAlign: "center", backgroundColor: "#dcd5c1" }}>
         <form
           onSubmit={(e) => {
             e.preventDefault(); // prevent page reload
