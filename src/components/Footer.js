@@ -61,7 +61,7 @@ export default function Footer() {
         <Divider sx={{ my: 3, borderColor: "#444" }} />
 
         <Typography variant="body2" align="center">
-          &copy; {new Date().getFullYear()} MyShop. All rights reserved.
+          &copy; {new Date().getFullYear()} Cloket. All rights reserved.
         </Typography>
       </Container>
     </Box>
